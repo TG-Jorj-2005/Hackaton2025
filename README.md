@@ -1,66 +1,105 @@
 # 🎓 FACIEE Gamified Challenge
 
-> A desktop-based interactive experience designed to introduce students to the different study paths within FACIEE through camera interaction, mini-games, scoring and a persistent leaderboard.
+> An interactive Raspberry Pi-powered desktop experience designed to introduce students to the different study paths within FACIEE through computer vision, hardware interaction, mini-games, scoring and a persistent leaderboard.
 
-![Python](https://img.shields.io/badge/Python-3.x-3776AB?style=for-the-badge\&logo=python\&logoColor=white)
-![PyQt6](https://img.shields.io/badge/PyQt6-GUI-41CD52?style=for-the-badge\&logo=qt\&logoColor=white)
-![OpenCV](https://img.shields.io/badge/OpenCV-Computer%20Vision-5C3EE8?style=for-the-badge\&logo=opencv\&logoColor=white)
-![Pygame](https://img.shields.io/badge/Pygame-Game%20Engine-00A86B?style=for-the-badge\&logo=python\&logoColor=white)
+[![Python](https://img.shields.io/badge/Python-3.x-3776AB?style=for-the-badge\&logo=python\&logoColor=white)](https://www.python.org/)
+[![PyQt6](https://img.shields.io/badge/PyQt6-GUI-41CD52?style=for-the-badge\&logo=qt\&logoColor=white)](https://www.riverbankcomputing.com/software/pyqt/)
+[![OpenCV](https://img.shields.io/badge/OpenCV-Computer%20Vision-5C3EE8?style=for-the-badge\&logo=opencv\&logoColor=white)](https://opencv.org/)
+[![Pygame](https://img.shields.io/badge/Pygame-Game%20Engine-00A86B?style=for-the-badge\&logo=python\&logoColor=white)](https://www.pygame.org/)
+[![Raspberry Pi](https://img.shields.io/badge/Raspberry%20Pi-Hardware-C51A4A?style=for-the-badge\&logo=raspberry-pi\&logoColor=white)](https://www.raspberrypi.com/)
 
 A hackathon project built around a simple idea:
 
-**turn the presentation of a university faculty into an interactive experience rather than a static screen.**
+**turn the presentation of a university faculty into an interactive physical experience rather than a static screen.**
 
-The application combines a modular PyQt6 interface, webcam-based interaction, computer vision, several PyGame mini-games, dynamic scoring and a shared leaderboard.
+The application combines a **Raspberry Pi**, webcam-based computer vision, a modular **PyQt6** interface, several **PyGame** mini-games, dynamic scoring and a shared leaderboard.
 
 ---
 
 # ✨ What It Does
 
-The application guides a user through an interactive faculty experience.
+The application guides a user through an interactive faculty experience running on a Raspberry Pi.
 
 The main flow is:
 
 ```text
-                 ┌──────────────────┐
-                 │   Launch App     │
-                 └────────┬─────────┘
-                          │
-                          ▼
-                 ┌──────────────────┐
-                 │ Webcam / Start   │
-                 │      Screen      │
-                 └────────┬─────────┘
-                          │
-                    Smile detected
-                          │
-                          ▼
-                 ┌──────────────────┐
-                 │ Game Selection   │
-                 └────────┬─────────┘
-                          │
-             ┌────────────┼────────────┐
-             ▼            ▼            ▼
-          AIA Game      IEC Game     IETTI Game
-             │            │            │
-             └────────────┼────────────┘
-                          ▼
-                 ┌──────────────────┐
-                 │ Score + Results  │
-                 └────────┬─────────┘
-                          ▼
-                 ┌──────────────────┐
-                 │   Leaderboard    │
-                 └──────────────────┘
+                 ┌────────────────────┐
+                 │    Raspberry Pi    │
+                 └─────────┬──────────┘
+                           │
+                           ▼
+                 ┌────────────────────┐
+                 │  Camera / Start    │
+                 │      Screen        │
+                 └─────────┬──────────┘
+                           │
+                     Smile detected
+                           │
+                           ▼
+                 ┌────────────────────┐
+                 │   Game Selection   │
+                 └─────────┬──────────┘
+                           │
+              ┌────────────┼────────────┐
+              ▼            ▼            ▼
+           AIA Game      IEC Game     IETTI Game
+              │            │            │
+              └────────────┼────────────┘
+                           ▼
+                 ┌────────────────────┐
+                 │  Score + Results   │
+                 └─────────┬──────────┘
+                           ▼
+                 ┌────────────────────┐
+                 │    Leaderboard     │
+                 └────────────────────┘
 ```
 
-The user can start the experience by interacting with the webcam or use the manual start option provided by the interface.
+The physical setup combines the Raspberry Pi with a display and camera, turning the software into an interactive kiosk-like experience.
+
+---
+
+# 🍓 Raspberry Pi Integration
+
+A core part of the project is its deployment on a **Raspberry Pi**.
+
+Instead of running only as a conventional desktop application, the project was designed to work as a self-contained interactive system using Raspberry Pi hardware.
+
+The Raspberry Pi acts as the computing platform for:
+
+* running the Python application;
+* connecting to the webcam;
+* processing camera frames;
+* rendering the graphical interface;
+* running the PyGame mini-games;
+* handling user input;
+* providing the physical deployment environment.
+
+This makes the project a combination of **software development and hardware-oriented deployment**.
+
+```text
+             ┌──────────────────────┐
+             │     Raspberry Pi     │
+             │                      │
+             │  Python Application  │
+             └──────────┬───────────┘
+                        │
+          ┌─────────────┼─────────────┐
+          │             │             │
+          ▼             ▼             ▼
+       Webcam        Display       Input
+          │             │             │
+          ▼             ▼             ▼
+      OpenCV         PyQt6         PyGame
+```
+
+The project was therefore developed with the constraints of a small embedded computing platform in mind rather than a conventional high-performance desktop.
 
 ---
 
 # 🧠 Key Features
 
-### 📷 Webcam Interaction
+### 📷 Computer Vision
 
 The project uses **OpenCV** to capture frames from the webcam and perform face and smile detection.
 
@@ -69,30 +108,30 @@ The camera module:
 * captures live webcam frames;
 * mirrors the image for a more natural interaction;
 * detects faces using Haar cascades;
-* detects smiles inside the detected face region;
+* detects smiles inside detected face regions;
 * draws visual feedback around detected faces and smiles;
 * exposes the detection result to the PyQt interface.
 
-The smile detection is used as an interaction mechanism for starting the game flow. The application also provides a manual fallback button.
+The smile detection is used as an interaction mechanism for starting the experience, while a manual fallback is also available.
 
 ---
 
-# 🖥️ Modular PyQt6 Interface
+### 🖥️ Modular Desktop Interface
 
 The application is built around a **PyQt6** main window with independently managed panels.
 
 The main window combines:
 
-* a camera panel;
-* a welcome/start panel;
-* a game selection panel;
+* camera panel;
+* welcome/start panel;
+* game selection panel;
 * dynamically replaced content;
 * timer-driven frame updates;
 * transitions between application states.
 
-The interface uses Qt signals to communicate between panels instead of hard-coding all interactions into a single window.
+Qt signals are used to communicate between panels rather than keeping all application logic inside a single monolithic window.
 
-For example:
+Example:
 
 ```text
 Camera Panel
@@ -102,10 +141,10 @@ Camera Panel
 Main Window
      │
      ▼
-Game Panel
+Game Selection
 ```
 
-This keeps the UI logic separated into smaller components.
+This keeps the interface modular and easier to extend.
 
 ---
 
@@ -113,7 +152,7 @@ This keeps the UI logic separated into smaller components.
 
 The project includes multiple mini-games implemented with **PyGame**.
 
-Each game follows the same general pattern:
+Each game follows a similar pipeline:
 
 ```text
 Input
@@ -131,11 +170,15 @@ Persistent Score
 Leaderboard
 ```
 
+The games are designed around different technical themes associated with FACIEE specializations.
+
+---
+
 ## ⚡ AIA — Logic Circuit Challenge
 
-The AIA game simulates a small digital logic circuit.
+The AIA game simulates a digital logic circuit.
 
-The player interacts with switches and must configure the circuit so that the final output is activated.
+The player interacts with switches and must configure the circuit so that the desired output is activated.
 
 The game contains:
 
@@ -145,68 +188,68 @@ The game contains:
 * real-time circuit evaluation;
 * a 60-second time limit;
 * score penalties for additional clicks;
-* a final score saved to the leaderboard.
+* final score persistence.
 
-The underlying circuit logic is represented directly in Python:
+The logic can be represented as:
 
 ```text
 Inputs → Logic Gates → Output
 ```
 
-The level is randomized before the game begins, ensuring that each run can produce a different configuration.
+The circuit configuration is randomized before each run, making repeated sessions less predictable.
 
 ---
 
 ## 📡 IETTI — Signal Master
 
-The IETTI game is built around controlling a signal amplitude and matching it to dynamically generated targets.
+The IETTI game focuses on controlling a signal amplitude and matching it against dynamically generated targets.
 
-The player can interact using:
+The player interacts through:
 
 * keyboard controls;
-* mouse controls;
+* mouse input;
 * real-time movement;
-* dynamically generated targets.
+* dynamic target generation.
 
 The game includes:
 
-* a 60-second time limit;
+* time-based gameplay;
 * dynamic scoring;
 * particle effects;
 * animated grid rendering;
-* signal matching logic;
+* signal matching;
 * reset functionality;
 * leaderboard integration.
 
-The game rewards the player for repeatedly aligning the controllable signal with the target range.
+The objective is to repeatedly align the controllable signal with the generated target.
 
 ---
 
 ## 🔧 IEC — Hardware Hero
 
-The IEC game focuses on identifying and collecting useful hardware components while avoiding hazards.
+The IEC game introduces a hardware-themed challenge where the player collects useful components while avoiding hazards.
 
-The game contains:
+The game includes:
 
 * falling components;
 * player movement;
 * collision detection;
 * lives;
 * score bonuses;
-* penalties for incorrect collisions;
+* penalties;
 * particle/explosion effects;
-* animated neon-style graphics;
+* animated rendering;
 * keyboard and mouse controls.
 
-Components are classified as either beneficial or harmful, creating a fast reaction-based challenge.
+The game was designed to reinforce the connection between software and physical hardware concepts.
 
 ---
 
 # 🏆 Leaderboard
 
-Scores are persisted locally in a CSV file.
+Scores are persisted locally using a CSV-based storage system.
 
-Each recorded result contains:
+Each result contains information such as:
 
 ```text
 Name
@@ -215,9 +258,7 @@ Specialization
 Score
 ```
 
-The leaderboard application loads the CSV data, parses player information, sorts players by score and displays the resulting ranking through a PyQt6 interface.
-
-This creates a shared scoring system between the different games.
+The leaderboard loads the stored results, sorts players according to their scores and displays the ranking through a PyQt6 interface.
 
 ```text
               ┌───────────────┐
@@ -236,11 +277,13 @@ This creates a shared scoring system between the different games.
               └───────────────┘
 ```
 
+This creates a shared progression and competitive element across the different games.
+
 ---
 
 # 🏗️ Project Architecture
 
-The application is split into several logical layers.
+The application is split into several logical components:
 
 ```text
 Hackaton2025/
@@ -273,15 +316,27 @@ Hackaton2025/
     └── asset/
 ```
 
-The main entry point constructs the application window, initializes the camera and controls transitions between the different panels.
+The architecture separates:
+
+```text
+Hardware / Camera
+        ↓
+Computer Vision
+        ↓
+GUI / Application State
+        ↓
+Game Modules
+        ↓
+Scoring
+        ↓
+Leaderboard
+```
 
 ---
 
 # 🔌 Communication Between Components
 
-A notable part of the project is the interaction between multiple independently implemented components.
-
-The main application uses **Qt signals** to communicate between panels.
+The application uses **Qt signals** to coordinate transitions between different UI components.
 
 Examples include:
 
@@ -291,30 +346,32 @@ start_clicked
 close_main_window
 ```
 
-These events allow the application to transition between states without tightly coupling every component together.
+This allows individual panels to emit events while the main application decides how to transition to the next state.
 
-The PyGame games also return control to the main application after completion and launch the leaderboard flow using Python subprocesses.
+The PyGame modules are launched as dedicated game environments and return control to the main application once gameplay is finished.
+
+The project also uses Python process management where appropriate to handle transitions between components.
 
 ---
 
 # 🎨 UI & Visual Design
 
-The project combines multiple UI technologies:
+The application combines several graphical technologies.
 
 ### PyQt6
 
 Used for:
 
-* main application window;
-* panels;
+* application window;
+* interface panels;
 * buttons;
 * labels;
 * leaderboard;
-* `.ui` layouts.
+* Qt Designer layouts.
 
 ### QSS
 
-Custom styling is used for the Qt interface through:
+Custom Qt styling is provided through:
 
 ```text
 style.qss
@@ -324,29 +381,30 @@ style.qss
 
 Used for:
 
-* real-time game rendering;
+* game rendering;
 * animations;
 * particles;
-* custom HUDs;
-* collision handling;
-* interactive gameplay.
+* HUDs;
+* real-time interaction;
+* collision handling.
 
-This allows the project to combine a conventional desktop interface with dedicated real-time game environments.
+This combination allows the application to maintain a polished desktop interface while embedding dedicated real-time gameplay.
 
 ---
 
-# 🛠️ Technology Stack
+# 🧰 Technology Stack
 
-| Technology | Purpose                            |
-| ---------- | ---------------------------------- |
-| Python     | Main programming language          |
-| PyQt6      | Desktop GUI                        |
-| OpenCV     | Webcam capture and computer vision |
-| PyGame     | Interactive mini-games             |
-| CSV        | Local score persistence            |
-| Qt Signals | Component communication            |
-| QSS        | GUI styling                        |
-| Subprocess | Application/game transitions       |
+| Technology       | Purpose                               |
+| ---------------- | ------------------------------------- |
+| **Python**       | Main programming language             |
+| **Raspberry Pi** | Computing / hardware platform         |
+| **PyQt6**        | Desktop GUI                           |
+| **OpenCV**       | Computer vision and webcam processing |
+| **PyGame**       | Interactive mini-games                |
+| **CSV**          | Local score persistence               |
+| **Qt Signals**   | Component communication               |
+| **QSS**          | GUI styling                           |
+| **Subprocess**   | Application / game transitions        |
 
 ---
 
@@ -361,11 +419,13 @@ cd Hackaton2025
 
 ## 2. Install dependencies
 
-The repository does not currently include a dedicated `requirements.txt`, so the main Python dependencies can be installed manually:
+The main Python dependencies are:
 
 ```bash
 pip install PyQt6 opencv-python pygame
 ```
+
+On a Raspberry Pi, the installation method may need to be adapted to the OS image, Python version and available system packages.
 
 ## 3. Start the application
 
@@ -373,7 +433,7 @@ pip install PyQt6 opencv-python pygame
 python main.py
 ```
 
-A webcam should be available if you want to use the camera-based interaction.
+A working webcam is required for the camera-based interaction.
 
 ---
 
@@ -399,37 +459,44 @@ A webcam should be available if you want to use the camera-based interaction.
 
 # 🧩 Design Goals
 
-The project was designed around several ideas:
+The project was designed around several principles.
 
-**Interactive instead of static**
+### Interactive instead of static
 
-Students interact with the application instead of simply reading information.
+Users interact with the application instead of simply reading information.
 
-**Technical instead of purely visual**
+### Software + Hardware
+
+The experience runs on a Raspberry Pi, connecting the software application to a physical computing platform.
+
+### Technical instead of purely visual
 
 Each specialization is represented through a small technical challenge.
 
-**Immediate feedback**
+### Immediate feedback
 
-The games provide real-time visual feedback, scoring and game states.
+The games provide real-time visual feedback, scoring and state changes.
 
-**Modular implementation**
+### Modular implementation
 
-The UI, camera system, games and leaderboard are separated into distinct components.
+The camera, UI panels, games and leaderboard are separated into distinct components.
 
-**Competitive element**
+### Competitive element
 
-The leaderboard adds replayability by allowing players to compare scores.
+The leaderboard encourages replayability and comparison between players.
 
 ---
 
 # 🧠 What This Project Demonstrates
 
-This project combines several areas of software development in a single application:
+This project combines multiple areas of software and hardware development:
 
+* Python application development;
 * desktop GUI development;
 * event-driven programming;
-* modular application design;
+* modular application architecture;
+* Raspberry Pi deployment;
+* webcam integration;
 * computer vision;
 * real-time rendering;
 * game development;
@@ -437,25 +504,76 @@ This project combines several areas of software development in a single applicat
 * state management;
 * scoring systems;
 * local data persistence;
-* inter-component communication;
 * process management;
+* inter-component communication;
 * UI styling.
 
-Rather than being a collection of isolated scripts, the project connects these components into a single interactive user flow.
+More importantly, the project demonstrates how multiple independent technologies can be combined into a single physical interactive system.
+
+---
+
+# 🔄 End-to-End System
+
+The complete experience can be viewed as:
+
+```text
+                    USER
+                      │
+                      ▼
+              ┌───────────────┐
+              │   Raspberry   │
+              │      Pi       │
+              └───────┬───────┘
+                      │
+              ┌───────▼───────┐
+              │    Webcam     │
+              └───────┬───────┘
+                      │
+                      ▼
+               ┌─────────────┐
+               │   OpenCV    │
+               │ Face/Smile  │
+               │  Detection  │
+               └──────┬──────┘
+                      │
+                      ▼
+               ┌─────────────┐
+               │   PyQt6     │
+               │ Application │
+               └──────┬──────┘
+                      │
+              ┌───────┼────────┐
+              ▼       ▼        ▼
+             AIA     IEC      IETTI
+              │       │        │
+              └───────┼────────┘
+                      │
+                      ▼
+               ┌─────────────┐
+               │    Score    │
+               └──────┬──────┘
+                      │
+                      ▼
+               ┌─────────────┐
+               │ Leaderboard │
+               └─────────────┘
+```
 
 ---
 
 # 📸 Screenshots
 
-Screenshots can be added here to show the main parts of the application:
+Screenshots can be added here to showcase the physical and software experience:
 
 ```text
 Main Screen
+Camera Interaction
 Game Selection
 AIA Game
 IETTI Game
 IEC Game
 Leaderboard
+Raspberry Pi Setup
 ```
 
 Example:
@@ -466,34 +584,37 @@ Example:
 ![Leaderboard](asset/leaderboard.png)
 ```
 
+A photograph of the Raspberry Pi setup would also be particularly useful here because it demonstrates that this is not only a desktop software project.
+
 ---
 
 # 🚧 Current Status
 
 **Hackathon prototype / educational project**
 
-The application was developed as a hackathon project and focuses on experimentation, rapid prototyping and combining multiple technologies into one interactive experience.
+The application was developed as a hackathon project and focuses on rapid prototyping, hardware/software integration and combining multiple technologies into one interactive experience.
 
-The codebase can be extended with additional games, richer persistence, improved packaging and a more scalable application architecture.
+The current implementation can be extended with additional games, more robust persistence, better packaging and a more scalable application architecture.
 
 ---
 
 # 🔮 Possible Improvements
 
-Future iterations could include:
+Potential future improvements include:
 
-* a proper SQLite database instead of CSV storage;
-* a `requirements.txt` or `pyproject.toml`;
-* improved error handling;
-* separation of game logic from rendering;
+* SQLite or another structured database instead of CSV;
+* `requirements.txt` or `pyproject.toml`;
+* improved input validation and error handling;
 * reusable game abstractions;
-* packaged executables;
-* richer user profiles;
+* cleaner separation between game logic and rendering;
+* packaged deployment for Raspberry Pi;
+* richer player profiles;
 * online leaderboards;
-* additional computer-vision interactions;
+* additional camera interactions;
 * automated testing;
 * CI/CD;
-* improved documentation and screenshots.
+* hardware peripherals such as physical buttons, LEDs or sensors;
+* better performance optimization for Raspberry Pi.
 
 ---
 
@@ -501,17 +622,8 @@ Future iterations could include:
 
 **Hackathon 2025 — FACIEE**
 
-Built as an interactive software project combining education, gamification and technology.
+An interactive project built to combine:
 
----
+**education + gamification + computer vision + software + Raspberry Pi**
 
-## 🔗 Related Projects
-
-My other Linux and development configurations:
-
-* **Arch Linux Dotfiles:** https://github.com/TG-Jorj-2005/Dotfiles.Arch
-* **NixOS Configuration:** https://github.com/TG-Jorj-2005/Nixos
-
----
-
-> Built with Python, Qt, OpenCV and PyGame — with the goal of turning a faculty introduction into something you can actually interact with.
+> Built with Python, Qt, OpenCV, PyGame and Raspberry Pi — turning a faculty presentation into an interactive experience.
