@@ -14,8 +14,6 @@ A hackathon project built around a simple idea:
 
 The application combines a **Raspberry Pi**, webcam-based computer vision, a modular **PyQt6** interface, several **PyGame** mini-games, dynamic scoring and a shared leaderboard.
 
-https://github.com/user-attachments/assets/38fe83b2-dd5e-4d0a-b233-3fc5a9e3c714
-
 ---
 
 # ✨ What It Does
