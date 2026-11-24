@@ -14,7 +14,7 @@ A hackathon project built around a simple idea:
 
 The application combines a **Raspberry Pi**, webcam-based computer vision, a modular **PyQt6** interface, several **PyGame** mini-games, dynamic scoring and a shared leaderboard.
 
-[Watch the silent project video](https://tg-jorj-2005.github.io/proiecte/faciee-gamified-challenge/#prezentare) · [MP4 file](docs/media/prezentare.mp4)
+https://github.com/user-attachments/assets/38fe83b2-dd5e-4d0a-b233-3fc5a9e3c714
 
 ---
 
