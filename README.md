@@ -174,6 +174,12 @@ The games are designed around different technical themes associated with FACIEE 
 
 ---
 
+## Demonstrație video
+
+O rundă a minijocului CTI în PyQt6, de la prima întrebare până la scorul final.
+
+https://github.com/user-attachments/assets/b35d8da3-b28f-4aea-8bed-536462475d1e
+
 ## ⚡ AIA — Logic Circuit Challenge
 
 The AIA game simulates a digital logic circuit.
